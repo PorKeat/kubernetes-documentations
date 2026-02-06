@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kubernetes-dashboard-ingress
+  namespace: kube-system
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"   # Dashboard uses HTTPS
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"       # Force HTTPS
+    cert-manager.io/cluster-issuer: letsencrypt-prod       # Optional: TLS via cert-manager
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: kubernetes.cambostack.codes      # <-- Replace with your domain
+    http:
+      paths:
+      - path: "/"
+        pathType: Prefix
+        backend:
+          service:
+            name: kubernetes-dashboard   # Existing Dashboard service
+            port:
+              number: 443                # Dashboard listens on 443
+  tls:
+  - hosts:
+    - kubernetes.cambostack.codes
+    secretName: kubernetes-dashboard-tls

@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-ingress
+  namespace: argocd
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"   # ArgoCD UI uses HTTPS internally
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"       # Force HTTPS
+    cert-manager.io/cluster-issuer: letsencrypt-prod       # TLS via cert-manager
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: argocd.cambostack.codes         # <-- Replace with your ArgoCD domain
+    http:
+      paths:
+      - path: "/"
+        pathType: Prefix
+        backend:
+          service:
+            name: argocd-server          # ArgoCD server service
+            port:
+              number: 443                # Internal HTTPS port for ArgoCD server
+  tls:
+  - hosts:
+    - argocd.cambostack.codes
+    secretName: argocd-tls                # TLS certificate secret for ArgoCD
