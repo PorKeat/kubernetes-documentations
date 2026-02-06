@@ -1,7 +1,3 @@
-Perfect! Let’s **update your ArgoCD documentation** to include **staging/production ClusterIssuers**, just like we did for Kubernetes Dashboard. I’ll also make it production-ready, using **ClusterIP + Ingress + HTTPS**.
-
----
-
 # **ArgoCD Setup & Domain Access**
 
 ## **1️⃣ Ensure ArgoCD Service is ClusterIP (Production)**
@@ -158,16 +154,4 @@ https://argocd.cambostack.codes
 * Login with the default admin user and the password from Step 2.
 * You can later change the admin password or configure SSO/OAuth.
 
----
 
-✅ **Notes:**
-
-* Service remains **ClusterIP**; NodePort is **not required**.
-* Ingress + cert-manager handles external access and HTTPS.
-* Use **staging ClusterIssuer** first for testing before switching to production.
-
----
-
-If you want, I can now **give you a full project folder structure** with all your YAMLs for **both Kubernetes Dashboard and ArgoCD**, ready to deploy with ClusterIP + Ingress + TLS.
-
-Do you want me to do that?

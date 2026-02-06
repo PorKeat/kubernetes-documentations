@@ -1,7 +1,3 @@
-Perfect! We can include your **ClusterIssuer definitions** directly in the documentation for completeness. Here’s the **updated Kubernetes Dashboard doc**, now including the **staging and production ClusterIssuer YAML** step.
-
----
-
 # **Kubernetes Dashboard Setup & Domain Access**
 
 ## **1️⃣ Ensure Service Type is ClusterIP (Production)**
@@ -189,13 +185,3 @@ https://dashboard.cambostack.codes
 * Paste the token from Step 3 to log in.
 
 > The Ingress handles HTTPS via cert-manager automatically. No NodePort or `kubectl proxy` is needed.
-
----
-
-This version now includes **both staging and production ClusterIssuers**, making it fully production-ready and aligned with best practices.
-
----
-
-If you want, I can **also make the ArgoCD documentation match this style**, including staging/prod ClusterIssuers and ClusterIP setup.
-
-Do you want me to do that?
