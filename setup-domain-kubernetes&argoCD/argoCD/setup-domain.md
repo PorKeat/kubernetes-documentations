@@ -71,7 +71,7 @@ spec:
   acme:
     # Staging server (no rate limits, untrusted certs)
     server: https://acme-staging-v02.api.letsencrypt.org/directory
-    email: lyvanna544@gmail.com
+    email: alexkgm2412@gmail.com
     privateKeySecretRef:
       name: letsencrypt-staging-account-key
     solvers:

@@ -1,0 +1,22 @@
+setup-domain-argocd:
+	@echo "Applying ArgoCD Ingress..."
+	@kubectl apply -f argoCD/argo-ingress.yaml >/dev/null 2>&1
+	@echo "Done."
+
+setup-domain-kubernetes:
+	@echo "Applying Kubernetes Dashboard Ingress..."
+	@kubectl apply -f kubernetes/kubernetes-dashboard-ingress.yaml >/dev/null 2>&1
+	@echo "Done."
+
+remove-domain-name:
+	@echo "Deleting ArgoCD Ingress..."
+	@kubectl delete ingress argocd-ingress -n argocd --ignore-not-found >/dev/null 2>&1
+	@echo "Deleting Kubernetes Dashboard Ingress..."
+	@kubectl delete ingress kubernetes-dashboard-ingress -n kube-system --ignore-not-found >/dev/null 2>&1
+	@echo "Done removing selected Ingresses."
+
+verify-domain-name:
+	@echo "Verifying ArgoCD Ingress..."
+	@kubectl get ingress argocd-ingress -n argocd || echo "ArgoCD Ingress not found"
+	@echo "Verifying Kubernetes Dashboard Ingress..."
+	@kubectl get ingress kubernetes-dashboard-ingress -n kube-system || echo "Kubernetes Dashboard Ingress not found"
